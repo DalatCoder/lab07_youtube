@@ -6,4 +6,4 @@ Thông tin cơ sở dữ liệu mặc định
 - Thông tin đăng nhập:
 
   - Tài khoản: `root`
-  - Mật khẩu: ``
+  - Mật khẩu: ` `
