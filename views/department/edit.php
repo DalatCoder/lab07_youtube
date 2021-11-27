@@ -19,12 +19,13 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Nhân Công</a>
+                        <a class="nav-link" href="?controller=EmployeeController&action=index">Nhân Công</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Phòng Ban</a>
+                        <a class="nav-link active" href="?controller=DepartmentController&action=index">Phòng Ban</a>
                     </li>
                 </ul>
             </div>

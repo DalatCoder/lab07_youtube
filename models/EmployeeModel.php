@@ -20,6 +20,30 @@ class EmployeeModel
         return $statement->fetchAll();
     }
 
+    public function get_by_id($id)
+    {
+        $sql = "SELECT * FROM `employees` WHERE id = :id";
+
+        $statement = $this->pdo_helper->prepare($sql);
+        $statement->bindValue('id', $id);
+
+        $statement->execute();
+
+        return $statement->fetch();
+    }
+
+    public function get_by_column($column, $value)
+    {
+        $sql = "SELECT * FROM `employees` WHERE `$column` = :val";
+
+        $statement = $this->pdo_helper->prepare($sql);
+        $statement->bindValue('val', $value);
+
+        $statement->execute();
+
+        return $statement->fetchAll();
+    }
+
     public function create_new_employee($name, $surname, $email, $phone, $department_id)
     {
         $sql = "

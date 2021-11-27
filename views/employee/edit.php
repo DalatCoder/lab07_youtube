@@ -33,7 +33,7 @@
 
     <div class="container">
 
-        <h1 class="my-5 text-center h3">Thêm nhân công mới</h1>
+        <h1 class="my-5 text-center h3">Chỉnh sửa nhân viên</h1>
 
         <div class="row my-3">
             <div class="col">
@@ -41,35 +41,38 @@
             </div>
         </div>
 
-        <form action="?controller=EmployeeController&action=store" method="POST">
+        <form action="?controller=EmployeeController&action=update" method="POST">
             <input type="hidden" name="controller" value="EmployeeController">
-            <input type="hidden" name="action" value="store">
+            <input type="hidden" name="action" value="update">
+            <input type="hidden" name="id" value="<?= $employee['id'] ?>">
 
             <div class="mb-3">
                 <label for="surname" class="form-label">Họ</label>
-                <input type="text" class="form-control" id="surname" name="surname" aria-describedby="emailHelp">
+                <input value="<?= $employee['surname'] ?>" type="text" class="form-control" id="surname" name="surname" aria-describedby="emailHelp">
             </div>
             <div class="mb-3">
                 <label for="firstname" class="form-label">Tên</label>
-                <input type="text" class="form-control" id="firstname" name="firstname" aria-describedby="emailHelp">
+                <input value="<?= $employee['name'] ?>" type="text" class="form-control" id="firstname" name="firstname" aria-describedby="emailHelp">
             </div>
             <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp">
+                <input value="<?= $employee['email'] ?>" type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp">
             </div>
             <div class="mb-3">
                 <label for="phone" class="form-label">SĐT</label>
-                <input type="text" class="form-control" id="phone" name="phone" aria-describedby="emailHelp">
+                <input value="<?= $employee['phone'] ?>" type="text" class="form-control" id="phone" name="phone" aria-describedby="emailHelp">
             </div>
             <div class="mb-3">
                 <label for="department" class="form-label">Phòng ban</label>
                 <select name="department" id="department" class="form-select">
                     <?php foreach ($all_departments as $department) : ?>
-                        <option value="<?= $department['id'] ?>"><?= $department['name'] ?></option>
+                        <option value="<?= $department['id'] ?>" <?= $department['id'] === $employee['department_id'] ? 'selected' : '' ?>>
+                            <?= $department['name'] ?>
+                        </option>
                     <?php endforeach; ?>
                 </select>
             </div>
-            <button type="submit" class="btn btn-primary">Tạo mới</button>
+            <button type="submit" class="btn btn-primary">Cập nhật</button>
         </form>
     </div>
 

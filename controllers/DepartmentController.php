@@ -3,11 +3,15 @@
 class DepartmentController
 {
     private $department_model;
+    private $employee_model;
 
     public function __construct()
     {
         include __DIR__ . '/../models/DepartmentModel.php';
+        include __DIR__ . '/../models/EmployeeModel.php';
+
         $this->department_model = new DepartmentModel();
+        $this->employee_model = new EmployeeModel();
     }
 
     /**
@@ -17,6 +21,15 @@ class DepartmentController
     {
         // Lấy danh sách tất cả phòng ban
         $all_departments = $this->department_model->get_all_departments();
+
+        for ($i = 0; $i < count($all_departments); $i++) {
+            // Lấy danh sách nhân viên thuộc về phòng ban
+            $department_id = $all_departments[$i]['id'];
+            $employees = $this->employee_model->get_by_column('department_id', $department_id);
+
+            $number_of_employee = count($employees);
+            $all_departments[$i]['number_of_employee'] = $number_of_employee;
+        }
 
         // Truyền danh sách này vào view
         include __DIR__ . '/../views/department/index.php';

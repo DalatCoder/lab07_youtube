@@ -21,10 +21,10 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Nhân Công</a>
+                        <a class="nav-link active" aria-current="page" href="?controller=EmployeeController&action=index">Nhân Công</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Phòng Ban</a>
+                        <a class="nav-link" href="?controller=DepartmentController&action=index">Phòng Ban</a>
                     </li>
                 </ul>
             </div>
@@ -37,7 +37,7 @@
 
         <div class="row my-3">
             <div class="col">
-                <a href="#" class="btn btn-primary">Thêm nhân công mới</a>
+                <a href="?controller=EmployeeController&action=create" class="btn btn-primary">Thêm nhân công mới</a>
             </div>
         </div>
 
@@ -49,65 +49,25 @@
                     <th scope="col">Họ Đệm</th>
                     <th scope="col">Email</th>
                     <th scope="col">Điện Thoại</th>
+                    <th scope="col">Phòng ban</th>
                     <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>1234567</td>
-                    <td>
-                        <a href="#" class="btn btn-warning me-2">Chi tiết</a>
-                        <a href="#" class="btn btn-danger">Xóa</a>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>1234567</td>
-                    <td>
-                        <a href="#" class="btn btn-warning me-2">Chi tiết</a>
-                        <a href="#" class="btn btn-danger">Xóa</a>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>1234567</td>
-                    <td>
-                        <a href="#" class="btn btn-warning me-2">Chi tiết</a>
-                        <a href="#" class="btn btn-danger">Xóa</a>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>1234567</td>
-                    <td>
-                        <a href="#" class="btn btn-warning me-2">Chi tiết</a>
-                        <a href="#" class="btn btn-danger">Xóa</a>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>1234567</td>
-                    <td>
-                        <a href="#" class="btn btn-warning me-2">Chi tiết</a>
-                        <a href="#" class="btn btn-danger">Xóa</a>
-                    </td>
-                </tr>
+                <?php foreach ($all_employees as $employee) : ?>
+                    <tr>
+                        <td scope="col"><?= $employee['id'] ?></td>
+                        <td scope="col"><?= $employee['name'] ?></td>
+                        <td scope="col"><?= $employee['surname'] ?></td>
+                        <td scope="col"><?= $employee['email'] ?></td>
+                        <td scope="col"><?= $employee['phone'] ?></td>
+                        <td scope="col"><?= $employee['department']['name'] ?></td>
+                        <td scope="col">
+                            <a href="?controller=EmployeeController&action=edit&id=<?= $employee['id'] ?>" class="btn btn-warning me-2">Xem</a>
+                            <a href="?controller=EmployeeController&action=destroy&id=<?= $employee['id'] ?>" class="btn btn-danger">Xóa</a>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
             </tbody>
         </table>
     </div>
